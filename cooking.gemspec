@@ -19,4 +19,9 @@ Gem::Specification.new do |s|
   # s.add_dependency "jquery-rails"
 
   s.add_development_dependency "mysql2"
+  s.add_development_dependency 'rspec-rails'
+  #s.add_development_dependency 'capybara'                    #not used yet
+  s.add_development_dependency 'factory_girl_rails'
+
+  s.test_files = Dir["spec/**/*"]
 end
