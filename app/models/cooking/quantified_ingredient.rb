@@ -1,5 +1,6 @@
 module Cooking
   class QuantifiedIngredient < BaseModel
+    set_table_name :quantified_ingredients
     # attr_accessible :title, :body
     belongs_to :recipe
     belongs_to :ingredient

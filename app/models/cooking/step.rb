@@ -1,5 +1,6 @@
 module Cooking
   class Step < BaseModel
+    set_table_name :steps
     # attr_accessible :title, :body
     belongs_to :recipe
     default_scope :order => 'sequence_number'

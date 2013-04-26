@@ -1,5 +1,6 @@
 module Cooking
   class Recipe < BaseModel
+    set_table_name :recipes
     # attr_accessible :title, :body
     has_many :steps, :dependent=>:destroy
     has_many :quantified_ingredients
