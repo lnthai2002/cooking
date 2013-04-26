@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2.13"
   s.add_dependency "mini_magick"
   s.add_dependency "carrierwave"
+  s.add_dependency 'tabs_on_rails'
   # s.add_dependency "jquery-rails"
 
   s.add_dependency 'haml'
