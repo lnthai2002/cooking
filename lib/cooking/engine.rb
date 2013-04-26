@@ -1,6 +1,9 @@
 module Cooking
   class Engine < ::Rails::Engine
     isolate_namespace Cooking
+    require 'rubygems'
+    require 'carrierwave'
+    require 'mini_magick'
     config.generators do |g|
       g.test_framework      :rspec,        :fixture => false
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
