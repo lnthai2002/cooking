@@ -5,6 +5,7 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
+=begin   use spec task as if it is in dummy rails app http://viget.com/extend/rails-engine-testing-with-rspec-capybara-and-factorygirl
 APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
 
@@ -19,9 +20,9 @@ desc "Run all specs in spec directory (excluding plugin specs)"
 RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
 
 task :default => :spec
+=end
 
-
-=begin            #commented out as suggested in http://viget.com/extend/rails-engine-testing-with-rspec-capybara-and-factorygirl
+#=begin ORIGINAL CODE 
 begin
   require 'rdoc/task'
 rescue LoadError
@@ -45,4 +46,4 @@ load 'rails/tasks/engine.rake'
 
 Bundler::GemHelper.install_tasks
 
-=end
+#=end
