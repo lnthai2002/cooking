@@ -1,6 +1,6 @@
 class CreateCookingIngredients < ActiveRecord::Migration
   def change
-    create_table :ingredients do |t|
+    create_table :cooking_ingredients do |t|
       t.column :name, :string
       t.timestamps
     end

@@ -1,5 +1,5 @@
 class AddImageToCookingIngredient < ActiveRecord::Migration
   def change
-    add_column :ingredients, :image, :string
+    add_column :cooking_ingredients, :image, :string
   end
 end
