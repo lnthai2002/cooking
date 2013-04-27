@@ -8,10 +8,10 @@ module Cooking
     end
   
     it 'have steps sorted by sequence number by default' do
-      recipe = FactoryGirl.build(:recipe)
+      recipe = FactoryGirl.build(:cooking_recipe)
   
-      step1 = FactoryGirl.build(:step, :sequence_number=>1)
-      step2 = FactoryGirl.build(:step, :sequence_number=>2)
+      step1 = FactoryGirl.build(:cooking_step, :sequence_number=>1)
+      step2 = FactoryGirl.build(:cooking_step, :sequence_number=>2)
       recipe.steps << step2
       recipe.steps << step1
   

@@ -13,8 +13,8 @@ module Cooking
     end
   
     it 'must be created in sequence' do
-      recipe = FactoryGirl.create(:recipe)
-      step = FactoryGirl.build(:step, :recipe=>recipe)
+      recipe = FactoryGirl.create(:cooking_recipe)
+      step = FactoryGirl.build(:cooking_step, :recipe=>recipe)
       step.save
       step.sequence_number.should == 1
     end
