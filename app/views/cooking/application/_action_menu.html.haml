@@ -1,0 +1,6 @@
+= tabs_tag do |tab|
+  = tab.cooking 'Cooking', recipes_path
+  = link_to_unless_current('List', recipes_path)
+  = link_to_unless_current('Add', new_recipe_path)
+  = link_to_unless_current('Edit', edit_recipe_path(@recipe)) if (@recipe && !@recipe.new_record?)
+  = link_to_unless_current('Detail', recipe_path(@recipe)) if (@recipe && !@recipe.new_record?)
