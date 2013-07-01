@@ -2,15 +2,14 @@ require_dependency "cooking/application_controller"
 
 module Cooking
   class RecipesController < ApplicationController
-    #Service
-    set_tab :cooking
-    #Resource tab
-    set_tab :all, :recipes
-    #sub-tab, each sub-tab coresponse to one action, they belong to the namespace 'recipe_actions'
-    set_tab :add, :recipe_actions, :only => %w(new)
-    set_tab :edit, :recipe_actions, :only => %w(edit)
-    set_tab :list, :recipe_actions, :only => %w(index)
-    set_tab :show, :recipe_actions, :only => %w(show)
+    #usecase tabs
+    set_tab :cooking, :usecases, :only => %w(index show new edit)
+    #action tabs
+    set_tab :add, :cooking_recipe, :only => %w(new)
+    set_tab :edit, :cooking_recipe, :only => %w(edit)
+    set_tab :list, :cooking_recipe, :only => %w(index)
+    set_tab :show, :cooking_recipe, :only => %w(show)
+
     # GET /recipes
     # GET /recipes.json
     def index
