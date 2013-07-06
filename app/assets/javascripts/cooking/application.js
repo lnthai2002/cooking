@@ -13,3 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+//Show and hide div____________________
+$(document).ready(function(){
+	$('.js_pullable_title').click(function(e){
+		$(e.currentTarget).nextAll('.js_pullable_div:first').slideToggle();
+	})
+});
