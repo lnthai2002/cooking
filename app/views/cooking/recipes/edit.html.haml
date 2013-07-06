@@ -38,15 +38,15 @@
       %fieldset
         %legend New step
         #step_form
-          = render 'steps/form'
+          = render 'cooking/steps/form'
     %td
       %fieldset
         %legend New ingredient
-        = render 'quantified_ingredients/form'
+        = render 'cooking/quantified_ingredients/form'
   %tr
     %td
       %ol#steps.sortable_list
-        = render :partial=>'steps/steps'
+        = render :partial=>'cooking/steps/steps'
     %td
       %ul#ingredients
         - @recipe.quantified_ingredients.each do |qingredient|
