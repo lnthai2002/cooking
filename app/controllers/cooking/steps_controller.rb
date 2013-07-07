@@ -81,6 +81,7 @@ module Cooking
       end
     end
   
+    #This should be called using
     def update_sequences
       begin
         Step.transaction  do #update all or nothing
@@ -91,7 +92,11 @@ module Cooking
       rescue Exception=>e
         notice = 'Cannot update sequence, there is something wrong, developer has been notified'
       end
-      redirect_to :controller=>:recipes, :action=>:show, :id=>@recipe.id, :format => 'html'
+      respond_to do |format|
+        format.html {redirect_to :controller=>:recipes, :action=>:show, :id=>@recipe.id, :format => 'html'}
+        format.xml  { head :ok }
+        format.json { head :ok }
+      end
     end
   
 private

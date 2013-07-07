@@ -4,13 +4,15 @@
       $(".sortable_list").sortable({opacity: 0.6,
                                     cursor: 'move',
                                     update: function() {
-                                      var order = $(this).sortable("serialize") +
-                                                  '&recipe_id=' +
-                                                  $('#recipe_id').val();
-                                      $.put("/steps/update_sequences",
-                                            order,
-                                            null,
-                                            null);
+                                      var order = $(this).sortable("serialize") + 
+                                                  '&_method=PUT';
+                                      var update_url = '#{update_sequences_recipe_steps_url(@recipe)}';
+                                      $.ajax({
+                                          type: "POST",
+                                          url: update_url,
+                                          data: order,
+                                          dataType: 'json'
+                                      });
                                     }
                                   });
     });

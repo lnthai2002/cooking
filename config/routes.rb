@@ -2,7 +2,11 @@ Cooking::Engine.routes.draw do
   resources :ingredients
   
   resources :recipes do
-    resources :steps
+    resources :steps do
+      collection do
+        put 'update_sequences'
+      end
+    end
     resources :quantified_ingredients
   end
   root :to => 'recipes#index'
