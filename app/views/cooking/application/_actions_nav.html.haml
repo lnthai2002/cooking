@@ -1,5 +1,5 @@
 #actions_nav
-  = tabs_tag :name_space => :recipe do |tab|
+  = tabs_tag :namespace => :recipe do |tab|
     = tab.list 'List', recipes_path
     = tab.add 'Add', new_recipe_path
     = (tab.edit 'Edit', edit_recipe_path(@recipe)) if (@recipe && !@recipe.new_record?)
