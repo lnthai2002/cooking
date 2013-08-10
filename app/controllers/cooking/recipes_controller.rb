@@ -5,10 +5,10 @@ module Cooking
     #usecase tabs
     set_tab :cooking, :usecases, :only => %w(index show new edit)
     #action tabs
-    set_tab :add, :cooking_recipe, :only => %w(new)
-    set_tab :edit, :cooking_recipe, :only => %w(edit)
-    set_tab :list, :cooking_recipe, :only => %w(index)
-    set_tab :show, :cooking_recipe, :only => %w(show)
+    set_tab :add, :recipe, :only => %w(new)
+    set_tab :edit, :recipe, :only => %w(edit)
+    set_tab :list, :recipe, :only => %w(index)
+    set_tab :show, :recipe, :only => %w(show)
 
     # GET /recipes
     # GET /recipes.json

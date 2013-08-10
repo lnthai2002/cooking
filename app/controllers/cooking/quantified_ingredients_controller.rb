@@ -23,10 +23,10 @@ private
       quantified_ingredient.recipe_id = params[:recipe_id]
       respond_to do |format|
         if quantified_ingredient.save
-          format.html { redirect_to "/cooking/recipes/#{params[:recipe_id]}/edit", notice: 'An ingredient was successfully added.' }
+          format.html { redirect_to edit_recipe_path(params[:recipe_id]), notice: 'An ingredient was successfully added.' }
           format.json { render json: quantified_ingredient, status: :created, location: quantified_ingredient }
         else
-          format.html { render action: "new" }
+          format.html { redirect_to edit_recipe_path(params[:recipe_id]), notice: 'Error when creating ingredient' }
           format.json { render json: quantified_ingredient.errors, status: :unprocessable_entity }
         end
       end
@@ -37,7 +37,7 @@ private
       QuantifiedIngredient.find(params[:id]).destroy
   
       respond_to do |format|
-        format.html { redirect_to "/cooking/recipes/#{params[:recipe_id]}/edit" }
+        format.html { redirect_to edit_recipe_path(params[:recipe_id]) }
         format.json { head :ok }
       end
     end
