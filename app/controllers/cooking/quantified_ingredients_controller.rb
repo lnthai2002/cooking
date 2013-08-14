@@ -29,6 +29,7 @@ module Cooking
 
       if @quantified_ingredient.update_attributes(params[:quantified_ingredient])
         @quantified_ingredient = @recipe.quantified_ingredients.build
+        @quantified_ingredient.ingredient = Ingredient.new
         render :update
       else
         
