@@ -2,16 +2,20 @@
   $(document).ready(function(){
     var $container = $('#recipes');
     // initialize
-    $container.masonry({
-      columnWidth: 200,
-      itemSelector: '.recipe'
-    });    
+    $container.imagesLoaded( function() {
+      $container.masonry({
+        columnWidth: 250,
+        itemSelector: '.recipe'
+      });
+    });
   });
 
 #recipes
   -@recipes.each do |recipe|
-    %div{:class=>['recipe', cycle('even', 'odd')]}
+    .recipe
       = link_to image_tag(recipe.image_url(:medium).to_s), recipe
-      = link_to recipe.name, recipe
       %br
-      = truncate(recipe.description, :length=>30)
+      %p
+        = link_to recipe.name, recipe
+        %br
+        = truncate(recipe.description, :length=>30)
