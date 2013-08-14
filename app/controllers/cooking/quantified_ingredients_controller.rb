@@ -17,6 +17,23 @@ module Cooking
         delete_and_go_back_to_index
       end
     end
+
+    def edit
+      @recipe = Recipe.find(params[:recipe_id])
+      @quantified_ingredient = @recipe.quantified_ingredients.find(params[:id])
+    end
+
+    def update
+      @recipe = Recipe.find(params[:recipe_id])
+      @quantified_ingredient = @recipe.quantified_ingredients.find(params[:id])
+
+      if @quantified_ingredient.update_attributes(params[:quantified_ingredient])
+        @quantified_ingredient = @recipe.quantified_ingredients.build
+        render :update
+      else
+        
+      end
+    end
 private
     def create_and_forward_to_recipe
       quantified_ingredient = QuantifiedIngredient.new(params[:quantified_ingredient])
