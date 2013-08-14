@@ -1,9 +1,6 @@
-%table
-  -@recipes.each do |recipe|
-    %tr{:class=>cycle('even', 'odd')}
-      %td
-        = link_to image_tag(recipe.image_url(:thumb).to_s), recipe
-      %td
-        = link_to recipe.name, recipe
-        %br
-        = truncate(recipe.description, :length=>20)
+-@recipes.each do |recipe|
+  %div{:class=>['recipe', cycle('even', 'odd')]}
+    = link_to image_tag(recipe.image_url(:medium).to_s), recipe
+    = link_to recipe.name, recipe
+    %br
+    = truncate(recipe.description, :length=>30)
