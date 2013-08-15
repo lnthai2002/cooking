@@ -13,9 +13,10 @@
 #recipes
   -@recipes.each do |recipe|
     .recipe
-      = link_to image_tag(recipe.image_url(:medium).to_s), recipe
+      .img= link_to image_tag(recipe.image_url(:medium).to_s), recipe
       %br
-      %p
-        = link_to recipe.name, recipe
-        %br
-        = truncate(recipe.description, :length=>30)
+      .txt
+        %p
+          = link_to recipe.name, recipe
+          %br
+          = truncate(recipe.description, :length=>30)

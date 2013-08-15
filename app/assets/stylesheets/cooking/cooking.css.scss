@@ -1,11 +1,15 @@
 .recipe{
-  margin-left:auto;
-  margin-right:auto;
+  //padding: 5px;
+  //background-color:LightGray
+  //margin-left:auto;
+  //margin-right:auto;
   margin-bottom: 10px;
   float:left;
-  padding: 5px;
-  //border: 2px solid grey;
-  background-color:LightGray
+  border: 2px solid grey;
+  .txt{
+    padding: 5px;
+    background-color:LightGray
+  }
 }
 .ingredient{
   float:left;
