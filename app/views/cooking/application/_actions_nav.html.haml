@@ -4,3 +4,4 @@
     = tab.add 'Add', new_recipe_path
     = (tab.edit 'Edit', edit_recipe_path(@recipe)) if (@recipe && !@recipe.new_record?)
     = (tab.show 'Detail', recipe_path(@recipe)) if (@recipe && !@recipe.new_record?)
+    = (link_to('Delete', @recipe, confirm: 'Are you sure?', method: :delete)) if (@recipe && !@recipe.new_record?)
