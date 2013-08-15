@@ -5,5 +5,10 @@ module Cooking
       source = "cooking/image_not_available.png" if source.blank?
       super(source, options)
     end
+
+    def random_image_version(imageable, base_version, max)
+      version = "#{base_version}_#{Random.rand(max)}"
+      return imageable.image_url(version.to_sym).to_s
+    end
   end
 end
