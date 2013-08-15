@@ -3,10 +3,16 @@ require_dependency "cooking/application_controller"
 module Cooking
   class QuantifiedIngredientsController < ApplicationController
     def create
-      if not params[:recipe_id].blank?
-        create_and_forward_to_recipe
+      @recipe = Recipe.find(params[:recipe_id])
+      quantified_ingredient = QuantifiedIngredient.new(params[:quantified_ingredient])
+      quantified_ingredient.recipe_id = params[:recipe_id]
+
+      if quantified_ingredient.save
+        @quantified_ingredient = @recipe.quantified_ingredients.build
+        @quantified_ingredient.ingredient = Ingredient.new
+        render :update
       else
-        create_and_go_back_to_show
+
       end
     end
   
@@ -15,6 +21,24 @@ module Cooking
         delete_and_forward_to_recipe
       else
         delete_and_go_back_to_index
+      end
+    end
+
+    def edit
+      @recipe = Recipe.find(params[:recipe_id])
+      @quantified_ingredient = @recipe.quantified_ingredients.find(params[:id])
+    end
+
+    def update
+      @recipe = Recipe.find(params[:recipe_id])
+      @quantified_ingredient = @recipe.quantified_ingredients.find(params[:id])
+
+      if @quantified_ingredient.update_attributes(params[:quantified_ingredient])
+        @quantified_ingredient = @recipe.quantified_ingredients.build
+        @quantified_ingredient.ingredient = Ingredient.new
+        render :update
+      else
+        
       end
     end
 private

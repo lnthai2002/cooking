@@ -1,6 +1,8 @@
 %h2= "Recipe for #{@recipe.name}"
 
 = image_tag @recipe.image_url(:medium).to_s
+%br
+= @recipe.description
 
 %fieldset
   %legend.js_pullable_title Ingredient

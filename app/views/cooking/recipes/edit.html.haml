@@ -44,17 +44,12 @@
     %td
       %fieldset
         %legend New ingredient
-        = render 'cooking/quantified_ingredients/form'
+        #quantified_ingredient_form
+          = render 'cooking/quantified_ingredients/form'
   %tr
     %td
       %ol#steps.sortable_list
         = render :partial=>'cooking/steps/steps'
     %td
       %ul#ingredients
-        - @recipe.quantified_ingredients.each do |qingredient|
-          - if !qingredient.ingredient.new_record?
-            %li
-              = link_to 'Remove', {:controller=>:quantified_ingredients, :action=>:destroy, :id=>qingredient.id, :recipe_id=>@recipe.id}, {:method=>:delete}
-              = qingredient.ingredient.name
-              x
-              = qingredient.quantity
+        = render :partial=>'cooking/quantified_ingredients/quantified_ingredients'

@@ -1,8 +1,8 @@
-= form_for [@recipe, @quantified_ingredient], :html=>{:multipart=>true} do |q|
+= form_for [@recipe, @quantified_ingredient], :html=>{:multipart=>true, :remote=>true} do |q|
   - if @quantified_ingredient.errors.any?
     #error_explanation
       %h2
-        = pluralize(@step.errors.count, "error")
+        = pluralize(@quantified_ingredient.errors.count, "error")
         prohibited this ingredient from being saved:
       %ul
         - @quantified_ingredient.errors.full_messages.each do |msg|
