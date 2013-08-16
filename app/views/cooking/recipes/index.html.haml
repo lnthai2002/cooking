@@ -4,7 +4,7 @@
     // initialize
     $container.imagesLoaded( function() {
       $container.masonry({
-        columnWidth: 250,
+        columnWidth: 210,
         itemSelector: '.recipe'
       });
     });
@@ -14,9 +14,7 @@
   -@recipes.each do |recipe|
     .recipe
       .img= link_to image_tag(random_image_version(recipe, 'medium', 3)), recipe
-      %br
       .txt
-        %p
-          = link_to recipe.name, recipe
-          %br
-          = truncate(recipe.description, :length=>30)
+        = link_to recipe.name, recipe
+        %br
+        = truncate(recipe.description, :length=>30)
