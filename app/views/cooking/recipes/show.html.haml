@@ -1,4 +1,16 @@
-%h2= "Recipe for #{@recipe.name}"
+:javascript
+  $(document).ready(function(){
+    var $container = $('#ingredients');
+    // initialize
+    $container.imagesLoaded( function() {
+      $container.masonry({
+        columnWidth: 210,
+        itemSelector: '.ingredient'
+      });
+    });
+  });
+
+%h2= @recipe.name
 
 = image_tag @recipe.image_url(:medium_0).to_s
 %br
@@ -7,13 +19,16 @@
 %fieldset
   %legend.js_pullable_title Ingredient
   .js_pullable_div
-    - @recipe.quantified_ingredients.each do |qingredient|
-      - if qingredient.ingredient
-        .ingredient
-          = qingredient.ingredient.name
-          X
-          = qingredient.quantity
-          = image_tag qingredient.ingredient.image_url(:medium).to_s
+    #ingredients
+      - @recipe.quantified_ingredients.each do |qingredient|
+        - if qingredient.ingredient
+          .ingredient
+            .txt
+              = qingredient.ingredient.name
+              X
+              = qingredient.quantity
+            .img
+              = image_tag(random_image_version(qingredient.ingredient, 'medium', 3))
 
 %fieldset
   %legend.js_pullable_title Steps
