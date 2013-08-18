@@ -45,11 +45,11 @@ class RecipeImageUploader < CarrierWave::Uploader::Base
   end
 
   version :medium_1 do
-    process :resize_to_fit=>[300, 300]
+    process :resize_to_fit=>[400, 400]
   end
 
-  version :medium_2 do
-    process :resize_to_fit=>[400, 400]
+  version :medium_2, :from_version=>:big do
+    process :resize_to_fit=>[600, 600]
   end
 
   version :big do
