@@ -36,24 +36,24 @@ class RecipeImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fit=>[50, 50]
-  end
-  
-  version :medium_0 do
-    process :resize_to_fit=>[200, 200]
+  version :big do
+    process :resize_to_fit=>[800, 800]
   end
 
-  version :medium_1 do
-    process :resize_to_fit=>[300, 300]
+  version :medium_2, :from_version=>:big do
+    process :resize_to_fit=>[600, 600]
   end
 
-  version :medium_2 do
+  version :medium_1, :from_version=>:medium_2 do
     process :resize_to_fit=>[400, 400]
   end
 
-  version :big do
-    process :resize_to_fit=>[800, 800]
+  version :medium_0, :from_version=>:medium_1 do
+    process :resize_to_fit=>[200, 200]
+  end
+
+  version :thumb, :from_version=>:medium_0 do
+    process :resize_to_fit=>[50, 50]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
