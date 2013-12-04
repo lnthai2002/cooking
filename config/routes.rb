@@ -4,7 +4,7 @@ Cooking::Engine.routes.draw do
   resources :recipes do
     resources :steps do
       collection do
-        put 'update_sequences'
+        patch 'update_sequences'
       end
     end
     resources :quantified_ingredients
