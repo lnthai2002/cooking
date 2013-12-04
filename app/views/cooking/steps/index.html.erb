@@ -5,7 +5,7 @@
   <tr>
     <th><%=step.sequence_number%></th>
     <td><%=step.description%></td>
-    <td><%= link_to 'Edit', edit_recipe_step_path(@recipe, step) %> | <%= link_to 'Destroy', [@recipe, step], confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Edit', edit_recipe_step_path(@recipe, step) %> | <%= link_to 'Destroy', [@recipe, step], data: {confirm: 'Are you sure?'}, method: :delete %></td>
   </tr>
 <% end %>
 </table>
