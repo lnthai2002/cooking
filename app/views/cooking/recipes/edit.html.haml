@@ -5,7 +5,7 @@
                                     cursor: 'move',
                                     update: function() {
                                       var order = $(this).sortable("serialize") + 
-                                                  '&_method=PUT';
+                                                  '&_method=PATCH';
                                       var update_url = '#{update_sequences_recipe_steps_url(@recipe)}';
                                       $.ajax({
                                           type: "POST",

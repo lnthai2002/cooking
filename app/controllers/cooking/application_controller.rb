@@ -1,5 +1,5 @@
 module Cooking
   class ApplicationController < ActionController::Base
-    layout 'layouts/application'
+    layout 'cooking/layouts/application'
   end
 end

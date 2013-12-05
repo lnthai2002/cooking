@@ -3,5 +3,5 @@
     %li{:id=>"recordid_#{step.id}"}
       = link_to 'Edit', edit_recipe_step_path(@recipe, step), :remote=>true
       |
-      = link_to 'Remove', [@recipe, step], confirm: 'Are you sure?', method: :delete
+      = link_to 'Remove', [@recipe, step], data: {confirm: 'Are you sure?'}, method: :delete
       =step.description
