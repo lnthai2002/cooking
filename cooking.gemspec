@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-ui-rails"
   s.add_dependency "remotipart"
 
-  s.add_dependency 'haml'
+  s.add_dependency 'haml-rails'
   s.add_development_dependency "mysql2"
   s.add_development_dependency 'rspec-rails'
   #s.add_development_dependency 'capybara'                    #not used yet
