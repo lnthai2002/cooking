@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mini_magick'
   s.add_dependency 'carrierwave'
   s.add_dependency 'tabs_on_rails'
+  s.add_dependency 'foundation-rails'     #foundation UI framework
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'remotipart'
@@ -29,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails'
   #s.add_development_dependency 'capybara'                    #not used yet
   s.add_development_dependency 'factory_girl_rails'
+  s.add_development_dependency 'rails_layout' #generate template for foundation/bootstrap
 
   s.test_files = Dir["spec/**/*"]
 end
