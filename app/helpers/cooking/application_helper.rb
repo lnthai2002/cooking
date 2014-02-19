@@ -1,19 +1,40 @@
 module Cooking
-  class MenuTabBuilder < TabsOnRails::Tabs::Builder
-    def open_tabs(options = {})
-      @context.tag('ul', options, open = true)
-    end
-  
-    def close_tabs(options = {})
-      '</ul>'.html_safe
-    end
-  
+  class MenuBuilder < TabsOnRails::Tabs::Builder
     def tab_for(tab, name, options, item_options = {})
       if current_tab?(tab)
-        @list['active'] = @context.link_to(name, '#')
+        @tabs[:list] << @context.link_to(name, '#')
+        @tabs[:current] = @tabs[:list].size - 1 #position of active link in the list
       else
-        @list['candidates'] << @context.link_to(name, options)
+        @tabs[:list] << @context.link_to(name, options)
       end
+    end
+
+    #How I want the list of tabs appear
+    def build_tabs(options)
+      output = ActiveSupport::SafeBuffer.new
+      if @tabs[:current]
+        output << @tabs[:list].delete_at(@tabs[:current])
+      else#take the first tab and don't decorate it
+        output << @tabs[:list].delete_at(0)
+        @options[:active][:class] = ''
+      end
+      @options[:active][:class] = 'has-dropdown ' + @options[:active][:class] 
+
+      idles = ActiveSupport::SafeBuffer.new
+      @tabs[:list].each do |idle_link|
+        idles << @context.content_tag('li') do
+          idle_link
+        end
+      end
+
+      output << @context.content_tag('ul', class: 'dropdown') do
+        idles.to_s
+      end
+      return @context.content_tag('ul', options[:open_tabs]) do
+        @context.content_tag('li', @options[:active]) do
+          output.to_s
+        end.to_s
+      end.to_s.html_safe
     end
   end
 
