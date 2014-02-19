@@ -1,9 +1,9 @@
-= tabs_tag(builder: Cooking::MenuTabBuilder,
-           namespace: :recipe,
+= tabs_tag(builder: Cooking::MenuBuilder, namespace: :recipe,
            open_tabs:{class:'right'},
-           active: {class:'active has-dropdown'}) do |tab|
+           active: {class:'active'}) do |tab|
   - tab.list 'List', recipes_path
   - tab.add 'Add', new_recipe_path
-  - (tab.edit 'Edit', edit_recipe_path(@recipe)) if (@recipe && !@recipe.new_record?)
-  - (tab.show 'Detail', recipe_path(@recipe)) if (@recipe && !@recipe.new_record?)
-  - (link_to('Delete', @recipe, data: {confirm: 'Are you sure?'}, method: :delete)) if (@recipe && !@recipe.new_record?)
+  - if (@recipe && !@recipe.new_record?)
+    - tab.edit 'Edit', edit_recipe_path(@recipe)
+    - tab.show 'Detail', recipe_path(@recipe)
+    - link_to('Delete', @recipe, data: {confirm: 'Are you sure?'}, method: :delete)
