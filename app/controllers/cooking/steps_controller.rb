@@ -40,6 +40,11 @@ module Cooking
     end
 
     def edit
+      @recipe = Recipe.find(params[:recipe_id])
+      @step = Step.find(params[:id])
+      respond_to do |format|
+        format.js {render 'form'}
+      end
     end
   
     # POST /steps
