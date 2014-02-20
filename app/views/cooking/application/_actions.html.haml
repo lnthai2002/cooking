@@ -6,4 +6,4 @@
   - if (@recipe && !@recipe.new_record?)
     - tab.edit 'Edit', edit_recipe_path(@recipe)
     - tab.show 'Detail', recipe_path(@recipe)
-    - link_to('Delete', @recipe, data: {confirm: 'Are you sure?'}, method: :delete)
+    - tab.raw link_to('Remove', @recipe, data: {confirm: 'Are you sure?'}, method: :delete)

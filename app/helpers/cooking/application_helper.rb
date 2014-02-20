@@ -1,5 +1,9 @@
 module Cooking
   class MenuBuilder < TabsOnRails::Tabs::Builder
+    def add_raw(string)
+      @tabs[:list] << string
+    end
+
     def tab_for(tab, name, options, item_options = {})
       if current_tab?(tab)
         @tabs[:list] << @context.link_to(name, '#')
