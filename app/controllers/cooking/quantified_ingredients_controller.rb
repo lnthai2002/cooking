@@ -2,6 +2,16 @@ require_dependency "cooking/application_controller"
 
 module Cooking
   class QuantifiedIngredientsController < ApplicationController
+    def new
+      @recipe = Recipe.find(params[:recipe_id])
+      @quantified_ingredient = @recipe.quantified_ingredients.build #build new ingredient
+      @quantified_ingredient.ingredient = Ingredient.new
+
+      respond_to do |format|
+        format.js
+      end
+    end
+
     def create
       @recipe = Recipe.find(params[:recipe_id])
       quantified_ingredient = QuantifiedIngredient.new(params[:quantified_ingredient])

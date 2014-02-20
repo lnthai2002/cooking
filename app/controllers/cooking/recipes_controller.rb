@@ -10,6 +10,13 @@ module Cooking
     set_tab :list, :recipe, :only => %w(index)
     set_tab :show, :recipe, :only => %w(show)
 
+    def edit_description
+      @recipe = Recipe.find(params[:id])
+      respond_to do |format|
+        format.js
+      end
+    end
+
     # GET /recipes
     # GET /recipes.json
     def index

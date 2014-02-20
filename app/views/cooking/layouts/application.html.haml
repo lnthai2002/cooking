@@ -13,6 +13,7 @@
   %body
     = render partial:'navigation'
     = render 'messages'
+    #dialog.reveal-modal{'data-reveal'=>true}
     = content_for?(:content) ? yield(:content) : yield
     -# Foundation 5 won't work when application.js is included in HEAD
     = javascript_include_tag 'cooking/application'

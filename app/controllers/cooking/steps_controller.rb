@@ -26,7 +26,7 @@ module Cooking
         format.json { render json: @step }
       end
     end
-  
+=end
     # GET /steps/new
     # GET /steps/new.json
     def new
@@ -34,11 +34,11 @@ module Cooking
   
       respond_to do |format|
         format.html # new.html.erb
+        format.js
         format.json { render json: @step }
       end
     end
-=end
-    
+
     def edit
     end
   
