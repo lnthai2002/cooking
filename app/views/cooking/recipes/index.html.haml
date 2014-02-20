@@ -1,15 +1,16 @@
-:javascript
-  $(document).ready(function(){
-    var $container = $('#recipes');
-    // initialize
-    $container.imagesLoaded( function() {
-      $container.masonry({
-        columnWidth: 200,
-        gutter: 20,
-        itemSelector: '.recipe'
+-content_for(:page_js) do
+  :javascript
+    $(document).ready(function(){
+      var $container = $('#recipes');
+      // initialize
+      $container.imagesLoaded( function() {
+        $container.masonry({
+          columnWidth: 200,
+          gutter: 20,
+          itemSelector: '.recipe'
+        });
       });
     });
-  });
 
 #recipes
   -@recipes.each do |recipe|

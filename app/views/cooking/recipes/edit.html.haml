@@ -1,25 +1,26 @@
-:javascript
-  $(document).ready(function(){
-    $(function() {
-      $(".sortable_list").sortable({opacity: 0.6,
-                                    cursor: 'move',
-                                    update: function() {
-                                      var order = $(this).sortable("serialize") + 
-                                                  '&_method=PATCH';
-                                      var update_url = '#{update_sequences_recipe_steps_url(@recipe)}';
-                                      $.ajax({
-                                          type: "POST",
-                                          url: update_url,
-                                          data: order,
-                                          dataType: 'json'
-                                      });
-                                    }
-                                  });
+-content_for(:page_js) do
+  :javascript
+    $(document).ready(function(){
+      $(function() {
+        $(".sortable_list").sortable({opacity: 0.6,
+                                      cursor: 'move',
+                                      update: function() {
+                                        var order = $(this).sortable("serialize") + 
+                                                    '&_method=PATCH';
+                                        var update_url = '#{update_sequences_recipe_steps_url(@recipe)}';
+                                        $.ajax({
+                                            type: "POST",
+                                            url: update_url,
+                                            data: order,
+                                            dataType: 'json'
+                                        });
+                                      }
+                                    });
+      });
+      
+      //do not show form to edit receipt info by default
+      $('.js_pullable_div').hide();
     });
-    
-    //do not show form to edit receipt info by default
-    $('.js_pullable_div').hide();
-  });
 
 %h2
   Editing recipe for

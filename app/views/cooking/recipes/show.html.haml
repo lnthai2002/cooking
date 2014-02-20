@@ -1,15 +1,16 @@
-:javascript
-  $(document).ready(function(){
-    var $container = $('#ingredients');
-    // initialize
-    $container.imagesLoaded( function() {
-      $container.masonry({
-        columnWidth: 200,
-        gutter: 20,
-        itemSelector: '.ingredient'
+-content_for(:page_js) do
+  :javascript
+    $(document).ready(function(){
+      var $container = $('#ingredients');
+      // initialize
+      $container.imagesLoaded( function() {
+        $container.masonry({
+          columnWidth: 200,
+          gutter: 20,
+          itemSelector: '.ingredient'
+        });
       });
     });
-  });
 
 %h2= @recipe.name
 
