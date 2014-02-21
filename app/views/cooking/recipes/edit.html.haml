@@ -1,27 +1,3 @@
--content_for(:page_js) do
-  :javascript
-    $(document).ready(function(){
-      $(function() {
-        $(".sortable_list").sortable({opacity: 0.6,
-                                      cursor: 'move',
-                                      update: function() {
-                                        var order = $(this).sortable("serialize") + 
-                                                    '&_method=PATCH';
-                                        var update_url = '#{update_sequences_recipe_steps_url(@recipe)}';
-                                        $.ajax({
-                                            type: "POST",
-                                            url: update_url,
-                                            data: order,
-                                            dataType: 'json'
-                                        });
-                                      }
-                                    });
-      });
-      
-      //do not show form to edit receipt info by default
-      $('.js_pullable_div').hide();
-    });
-
 %h2
   Editing recipe for
   = @recipe.name
@@ -30,34 +6,16 @@
 
 %div= image_tag @recipe.image_url(:medium_0).to_s
 %br
-=link_to 'Edit description', edit_description_recipe_path(@recipe), remote: true, class: 'button expand', 'data-reveal-id'=>'dialog'
+=link_to 'Edit description', edit_description_recipe_path(@recipe), remote:true, class: 'button expand', 'data-reveal-id'=>'dialog'
 %br
-=link_to 'Add ingredient', new_recipe_quantified_ingredient_path(recipe_id: @recipe.id), remote: true, class: 'button expand', 'data-reveal-id'=>'dialog'
+=link_to 'Add ingredient', new_recipe_quantified_ingredient_path(recipe_id: @recipe.id), remote:true, class:'button expand', 'data-reveal-id'=>'dialog'
 %br
-=link_to 'Add step', new_recipe_step_path(@recipe), remote: true, class: 'button expand', 'data-reveal-id'=>'dialog'
+=link_to 'Add step', new_recipe_step_path(@recipe), remote:true, class:'button expand', 'data-reveal-id'=>'dialog'
 %br
-=link_to 'Re-order steps', reorder_steps_recipe_steps_path(@recipe), remote: true, class: 'button expand'
-%table
-  %tr
-    %td{:colspan=>2}
-      %fieldset
-        %legend.js_pullable_title Recipe description
-        = render 'form'
-  %tr
-    %td
-      %fieldset
-        %legend New step
-        #step_form
-          = render 'cooking/steps/form'
-    %td
-      %fieldset
-        %legend New ingredient
-        #quantified_ingredient_form
-          = render 'cooking/quantified_ingredients/form'
-  %tr
-    %td
-      %ol#steps.sortable_list
-        = render :partial=>'cooking/steps/steps'
-    %td
-      %ul#ingredients
-        = render :partial=>'cooking/quantified_ingredients/quantified_ingredients'
+=link_to 'Re-order steps', recipe_steps_path(@recipe),class:'button expand'
+.row
+  .large-6.columns
+    = render :partial=>'cooking/steps/steps'
+  .large-6.columns
+    %ul#ingredients
+      = render :partial=>'cooking/quantified_ingredients/quantified_ingredients'
