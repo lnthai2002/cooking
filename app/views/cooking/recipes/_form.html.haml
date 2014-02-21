@@ -1,29 +1,21 @@
-.js_pullable_div
-  = form_for(@recipe, :html=>{:multipart=>true}) do |f|
-    - if @recipe.errors.any?
-      #error_explanation
-        %h2
-          = pluralize(@recipe.errors.count, "error")
-          prohibited this recipe from being saved:
-        %ul
-          - @recipe.errors.full_messages.each do |msg|
-            %li= msg
-    .actions
-      %table
-        %tr
-          %th Name
-          %td= f.text_field :name
-        %tr
-          %th Description
-          %td= f.text_area :description, :cols=>85, :rows=>3
-        %tr
-          %th
-            Cover Image
-            %br
-            jpg, jpeg, gif, png
-          %td
-            = f.file_field :image
-            %br
-            =f.text_field :remote_image_url, :placeholder => "or image URL"
-        %tr
-          %td{:colspan=>2, :align=>"right"}= f.submit 'OK'
+= form_for(@recipe, html:{multipart:true}) do |f|
+  .row
+    .large-12.columns
+      =f.error_messages
+  .row
+    .large-12.columns
+      = f.text_field :name, 'placeholder'=>'Name of recipe'
+  .row
+    .large-12.columns
+      = f.text_area :description, 'placeholder'=>'description'
+  .row
+    .large-12.columns
+      %label
+        Cover image
+        = f.file_field :image
+        =f.text_field :remote_image_url, :placeholder => "or image URL"
+  .row
+    .large-6.columns
+      %a.close-button-class.close-reveal-modal Cancel
+    .large-6.columns
+      = f.submit 'Done', class:'button expand'

@@ -13,7 +13,7 @@ module Cooking
     def edit_description
       @recipe = Recipe.find(params[:id])
       respond_to do |format|
-        format.js
+        format.js { render 'form' }
       end
     end
 
@@ -47,8 +47,7 @@ module Cooking
       @recipe = Recipe.new
   
       respond_to do |format|
-        format.html # new.html.erb
-        format.json { render json: @recipe }
+        format.js { render 'form' }
       end
     end
   
