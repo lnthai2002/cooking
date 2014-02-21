@@ -34,7 +34,7 @@ module Cooking
   
       respond_to do |format|
         format.html # new.html.erb
-        format.js
+        format.js {render 'form'}
         format.json { render json: @step }
       end
     end
