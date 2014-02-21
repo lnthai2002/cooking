@@ -2,7 +2,7 @@
            open_tabs:{class:'right'},
            active: {class:'active'}) do |tab|
   - tab.list 'List', recipes_path
-  - tab.add 'Add', new_recipe_path
+  - tab.add 'Add', new_recipe_path, remote:true, 'data-reveal-id'=>'dialog'
   - if (@recipe && !@recipe.new_record?)
     - tab.edit 'Edit', edit_recipe_path(@recipe)
     - tab.show 'Detail', recipe_path(@recipe)
