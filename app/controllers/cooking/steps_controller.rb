@@ -4,18 +4,19 @@ module Cooking
   class StepsController < ApplicationController
     before_filter :find_recipe
     before_filter :find_step, :only => [:show, :edit, :update, :destroy]
-=begin
+
     # GET /steps
     # GET /steps.json
     def index
-      @steps = Step.all
+      @recipe = Recipe.find(params[:recipe_id])
+      @steps = @recipe.steps.to_a
   
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @steps }
       end
     end
-  
+=begin  
     # GET /steps/1
     # GET /steps/1.json
     def show
