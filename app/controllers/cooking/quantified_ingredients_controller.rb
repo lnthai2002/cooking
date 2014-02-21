@@ -8,7 +8,7 @@ module Cooking
       @quantified_ingredient.ingredient = Ingredient.new
 
       respond_to do |format|
-        format.js
+        format.js  {render 'form'}
       end
     end
 
@@ -37,6 +37,9 @@ module Cooking
     def edit
       @recipe = Recipe.find(params[:recipe_id])
       @quantified_ingredient = @recipe.quantified_ingredients.find(params[:id])
+      respond_to do |format|
+        format.js  {render 'form'}
+      end
     end
 
     def update
