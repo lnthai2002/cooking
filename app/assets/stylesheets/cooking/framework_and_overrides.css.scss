@@ -1,2 +1,17 @@
 // import the CSS framework
 @import "foundation";
+
+.custom-reveal-class {
+  @include reveal-bg();
+  @include reveal-modal-base(
+    $base-style:true,
+    $width:$reveal-default-width
+  );
+  @include reveal-modal-style();
+  @include reveal-close();
+}
+
+.close-button-class {
+  $bg: lightgray;
+  @include button($button-med, $bg, 0, true, false, false);
+}
