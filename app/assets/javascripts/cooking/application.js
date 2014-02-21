@@ -19,6 +19,9 @@
 $(function() {
 	$(document).foundation();
 
+	$(document).on('closed', '[data-reveal]', function () {
+	  $(this).html('');
+	});
 	//Show and hide div____________________
 	$('.js_pullable_title').click(function(e) {
 		$(e.currentTarget).nextAll('.js_pullable_div:first').slideToggle();
