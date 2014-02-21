@@ -1,9 +1,9 @@
 - @recipe.quantified_ingredients.each do |qingredient|
   - if !qingredient.ingredient.new_record?
     %li
-      = link_to 'Edit', edit_recipe_quantified_ingredient_path(@recipe, qingredient), :remote=>true
+      =link_to 'Edit', edit_recipe_quantified_ingredient_path(@recipe, qingredient), remote:true, 'data-reveal-id'=>'dialog'
       |
-      = link_to 'Remove', {:controller=>:quantified_ingredients, :action=>:destroy, :id=>qingredient.id, :recipe_id=>@recipe.id}, {:method=>:delete}
-      = qingredient.ingredient.name
+      =link_to 'Remove', {:controller=>:quantified_ingredients, :action=>:destroy, :id=>qingredient.id, :recipe_id=>@recipe.id}, {:method=>:delete}
+      =qingredient.ingredient.name
       x
-      = qingredient.quantity
+      =qingredient.quantity
