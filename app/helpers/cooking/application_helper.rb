@@ -9,7 +9,7 @@ module Cooking
         @tabs[:list] << @context.link_to(name, '#')
         @tabs[:current] = @tabs[:list].size - 1 #position of active link in the list
       else
-        @tabs[:list] << @context.link_to(name, options)
+        @tabs[:list] << @context.link_to(name, options, item_options)
       end
     end
 
