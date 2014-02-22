@@ -43,6 +43,17 @@ module Cooking
   end
 
   module ApplicationHelper
+    def show_flash_message
+      output = ''
+      [:alert, :notice].each do |message|
+        if flash[message]
+          output = flash[message]
+          flash[message] = nil
+        end
+      end
+      return output
+    end
+
     #Overide default image_tag to fall back to error image to avoid compiled blank image not found in production 
     def image_tag(source, options={})
       source = "cooking/image_not_available.png" if source.blank?
