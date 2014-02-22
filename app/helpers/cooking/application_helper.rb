@@ -48,7 +48,7 @@ module Cooking
       [:alert, :notice].each do |message|
         if flash[message]
           output = flash[message]
-          flash[message] = nil
+          flash.delete(message)
         end
       end
       return output
