@@ -1,0 +1,28 @@
+-content_for(:page_js) do
+  :javascript
+    $(function() {
+      $(".sortable_list").sortable({opacity: 0.6,
+                                    cursor: 'move',
+                                    update: function() {
+                                      var order = $(this).sortable("serialize") + 
+                                                  '&_method=PATCH';
+                                      var update_url = '#{update_sequences_recipe_steps_url(@recipe)}';
+                                      $.ajax({
+                                          type: "POST",
+                                          url: update_url,
+                                          data: order,
+                                          dataType: 'json'
+                                      });
+                                    }
+                                  });
+    });
+%ol.sortable_list
+  -@recipe.steps.each do |step|
+    -if step.sequence_number
+      %li{id:"recordid_#{step.id}"}
+        =link_to 'Edit', edit_recipe_step_path(@recipe, step),
+                 remote:true, 'data-reveal-id'=>'dialog'
+        |
+        =link_to 'Remove', [@recipe, step], data:{confirm:"Remove step #{step.sequence_number}?"},
+                 method: :delete, remote:true, 'data-reveal-id'=>'dialog'
+        =truncate(step.description, length:20)

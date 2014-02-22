@@ -1,4 +1,4 @@
-= form_for [@recipe, @step], :html=>{:multipart=>true, :remote=>true} do |f|
+=form_for [@recipe, @step], html:{multipart:true, remote:true} do |f|
   .row
     .large-12.columns
       =f.error_messages

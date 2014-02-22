@@ -13,8 +13,8 @@
 %br
 =link_to 'Re-order steps', recipe_steps_path(@recipe),class:'button expand'
 .row
-  .large-6.columns
-    = render :partial=>'cooking/steps/steps'
+  .large-6.columns#steps
+    = render partial:'cooking/steps/list'
   .large-6.columns
     %ul#ingredients
       = render :partial=>'cooking/quantified_ingredients/quantified_ingredients'
