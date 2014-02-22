@@ -62,11 +62,11 @@ module Cooking
     # POST /recipes
     # POST /recipes.json
     def create
-      @recipe = Recipe.new(params[:recipe])
+      @recipe = Recipe.new(recipe_params)
   
       respond_to do |format|
         if @recipe.save
-          format.html { redirect_to edit_recipe_path(@recipe), notice: 'Recipe was successfully created.' }
+          format.html { redirect_to edit_recipe_path(@recipe), notice: 'New recipe created, time to add detail!' }
           format.json { render json: @recipe, status: :created, location: @recipe }
         else
           format.html { render action: "new" }
@@ -81,7 +81,7 @@ module Cooking
       @recipe = Recipe.find(params[:id])
   
       respond_to do |format|
-        if @recipe.update_attributes(params[:recipe])
+        if @recipe.update_attributes(recipe_params)
           format.html { redirect_to edit_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
           format.json { head :ok }
         else
@@ -101,6 +101,13 @@ module Cooking
         format.html { redirect_to recipes_url }
         format.json { head :ok }
       end
+    end
+
+    private
+
+    def recipe_params
+      params.require(:recipe)
+            .permit(:name, :description, :image)
     end
   end
 end
