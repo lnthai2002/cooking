@@ -14,15 +14,16 @@ module Cooking
 
     def create
       @recipe = Recipe.find(params[:recipe_id])
-      quantified_ingredient = QuantifiedIngredient.new(params[:quantified_ingredient])
-      quantified_ingredient.recipe_id = params[:recipe_id]
+      @quantified_ingredient = QuantifiedIngredient.new(quantified_ingredient_params)
+      @quantified_ingredient.recipe_id = params[:recipe_id]
 
-      if quantified_ingredient.save
-        @quantified_ingredient = @recipe.quantified_ingredients.build
-        @quantified_ingredient.ingredient = Ingredient.new
-        render :update
-      else
-
+      respond_to do |format|
+        if @quantified_ingredient.save
+          flash[:notice] = "#{@quantified_ingredient.ingredient.name} added"
+          format.js { render 'cooking/quantified_ingredients/created'}
+        else
+          format.js { render 'cooking/quantified_ingredients/form'}
+        end
       end
     end
   
@@ -46,12 +47,13 @@ module Cooking
       @recipe = Recipe.find(params[:recipe_id])
       @quantified_ingredient = @recipe.quantified_ingredients.find(params[:id])
 
-      if @quantified_ingredient.update_attributes(params[:quantified_ingredient])
-        @quantified_ingredient = @recipe.quantified_ingredients.build
-        @quantified_ingredient.ingredient = Ingredient.new
-        render :update
-      else
-        
+      respond_to do |format|
+        if @quantified_ingredient.update_attributes(quantified_ingredient_params)
+          flash[:notice] = "#{@quantified_ingredient.ingredient.name} updated"
+          format.js { render 'cooking/quantified_ingredients/created'}
+        else
+          format.js { render 'cooking/quantified_ingredients/form'}
+        end
       end
     end
 private
@@ -77,6 +79,14 @@ private
         format.html { redirect_to edit_recipe_path(params[:recipe_id]) }
         format.json { head :ok }
       end
+    end
+
+    private
+
+    def quantified_ingredient_params
+      params.require(:quantified_ingredient)
+            .permit(:quantity,
+                    ingredient_attributes: [:name,:image])
     end
   end
 end
