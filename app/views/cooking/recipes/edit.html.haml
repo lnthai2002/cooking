@@ -1,9 +1,9 @@
 %h2
   Editing recipe for
-  = @recipe.name
-  = hidden_field_tag :recipe_id, @recipe.id
+  =@recipe.name
+  =hidden_field_tag :recipe_id, @recipe.id
 
-%div= image_tag @recipe.image_url(:medium_0).to_s
+%div=image_tag @recipe.image_url(:medium_0).to_s
 %br
 =link_to 'Edit description', edit_description_recipe_path(@recipe), remote:true, class: 'button expand', 'data-reveal-id'=>'dialog'
 %br
@@ -14,6 +14,6 @@
 =link_to 'Re-order steps', recipe_steps_path(@recipe),class:'button expand'
 .row
   .large-6.columns#steps
-    = render partial:'cooking/steps/list'
+    =render partial:'cooking/steps/list'
   .large-6.columns#ingredients
-    = render partial:'cooking/quantified_ingredients/list'
+    =render partial:'cooking/quantified_ingredients/list'

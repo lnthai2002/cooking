@@ -15,8 +15,8 @@
 #recipes
   -@recipes.each do |recipe|
     .recipe
-      .img= link_to image_tag(random_image_version(recipe, 'medium', 3)), recipe
+      .img=link_to image_tag(random_image_version(recipe, 'medium', 3)), recipe
       .txt
-        = link_to recipe.name, recipe
+        =link_to recipe.name, recipe
         %br
-        = truncate(recipe.description, :length=>30)
+        =truncate(recipe.description, length:30)
