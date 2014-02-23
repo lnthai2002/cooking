@@ -1,0 +1,12 @@
+%ul
+  -@recipe.quantified_ingredients.each do |qingredient|
+    -if !qingredient.ingredient.new_record?
+      %li
+        =link_to 'Edit', edit_recipe_quantified_ingredient_path(@recipe, qingredient),
+                 {remote:true, 'data-reveal-id'=>'dialog'}
+        |
+        =link_to 'Remove', recipe_quantified_ingredient_path(@recipe, qingredient),
+                 {method: :delete, remote:true, 'data-reveal-id'=>'dialog'}
+        =qingredient.ingredient.name
+        x
+        =qingredient.quantity

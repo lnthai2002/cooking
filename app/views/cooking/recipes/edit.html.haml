@@ -15,6 +15,5 @@
 .row
   .large-6.columns#steps
     = render partial:'cooking/steps/list'
-  .large-6.columns
-    %ul#ingredients
-      = render :partial=>'cooking/quantified_ingredients/quantified_ingredients'
+  .large-6.columns#ingredients
+    = render partial:'cooking/quantified_ingredients/list'

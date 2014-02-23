@@ -1,11 +1,11 @@
-= form_for [@recipe, @quantified_ingredient], html:{multipart:true, remote:true} do |q|
-  = q.fields_for :ingredient do |i|
+=form_for [@recipe, @quantified_ingredient], html:{multipart:true, remote:true} do |q|
+  =q.fields_for :ingredient do |i|
     .row
       .large-12.columns
         =q.error_messages
     .row
       .large-12.columns
-        = i.text_field :name, 'placeholder'=>'name'
+        =i.text_field :name, 'placeholder'=>'name'
     .row
       .large-12.columns
         =q.text_field :quantity, 'placeholder'=>'quantity'
