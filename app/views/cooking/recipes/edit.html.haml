@@ -32,4 +32,7 @@
     %ol.sortable_list#steps
       =render partial:'cooking/steps/list'
   .large-6.columns
-    =render partial:'cooking/quantified_ingredients/list'
+    %label
+      Ingredient can not be reordered
+    %ul#ingredients
+      =render partial:'cooking/quantified_ingredients/list'

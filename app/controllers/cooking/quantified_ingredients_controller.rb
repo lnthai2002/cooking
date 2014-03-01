@@ -18,8 +18,7 @@ module Cooking
       @quantified_ingredient.recipe_id = params[:recipe_id]
       respond_to do |format|
         if @quantified_ingredient.save
-          flash[:notice] = "#{@quantified_ingredient.ingredient.name} added"
-          format.js { render 'reload_list'}
+          format.js { render 'reload_list_and_close_dialog'}
         else
           format.js { render 'show_form'}
         end
@@ -29,7 +28,6 @@ module Cooking
     def destroy
       respond_to do |format|
         if @quantified_ingredient.destroy
-          flash[:notice] = "#{@quantified_ingredient.ingredient.name} removed"
           format.js { render 'reload_list' }
         else
           flash[:alert] = "#{@quantified_ingredient.ingredient.name} cannot be removed"
@@ -40,7 +38,7 @@ module Cooking
 
     def edit
       respond_to do |format|
-        format.js  {render 'show_form'}
+        format.js {render 'show_form'}
       end
     end
 
@@ -48,7 +46,7 @@ module Cooking
       respond_to do |format|
         if @quantified_ingredient.update_attributes(quantified_ingredient_params)
           flash[:notice] = "#{@quantified_ingredient.ingredient.name} updated"
-          format.js { render 'reload_list' }
+          format.js { render 'reload_list_and_update_dialog' }
         else
           format.js { render 'show_form' }
         end
