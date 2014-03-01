@@ -23,6 +23,10 @@ $(function() {
 	$(document).on('closed', '[data-reveal]', function () {
 	  $(this).html('');
 	});
+
+	$(document).on('click', '.show_dialog', function(e) {
+		$('#dialog').foundation('reveal', 'open');
+	});
 	//Show and hide div____________________
 	$('.js_pullable_title').click(function(e) {
 		$(e.currentTarget).nextAll('.js_pullable_div:first').slideToggle();

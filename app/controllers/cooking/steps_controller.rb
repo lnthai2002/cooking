@@ -36,8 +36,7 @@ module Cooking
 
       respond_to do |format|
         if @step.save
-          flash[:notice] = "Step #{@step.sequence_number} added"
-          format.js {render 'reload_list'}
+          format.js {render 'reload_list_and_close_dialog'}
         else
           format.js {render 'show_form'}
         end
@@ -49,7 +48,7 @@ module Cooking
       respond_to do |format|
         if @step.update_attributes(step_params)
           flash[:notice] = "Step #{@step.sequence_number} updated"
-          format.js {render 'reload_list'}
+          format.js {render 'reload_list_and_update_dialog'}
         else
           format.js {render 'show_form'}
         end
@@ -61,7 +60,6 @@ module Cooking
       respond_to do |format|
         if @step.destroy
           #TODO: re-sort all sequence numbers of steps
-          flash[:notice] = "Step removed"
           format.js { render 'reload_list'}
         else
           flash[:alert] = "Cannot remove this step!"

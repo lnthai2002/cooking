@@ -1,7 +1,24 @@
+-content_for(:page_js) do
+  :javascript
+    $(function() {
+      $(".sortable_list").sortable({opacity: 0.6,
+                                    cursor: 'move',
+                                    update: function() {
+                                      var order = $(this).sortable("serialize") + 
+                                                  '&_method=PATCH';
+                                      var update_url = '#{update_sequences_recipe_steps_url(@recipe)}';
+                                      $.ajax({
+                                          type: "POST",
+                                          url: update_url,
+                                          data: order,
+                                          dataType: 'json'
+                                      });
+                                    }
+                                  });
+    });
 .row
-  .large-6.columns
-    %div=image_tag @recipe.image_url(:medium_0).to_s
-  .large-6.columns
+  .large-12.columns.text-center
+    .center=image_tag @recipe.image_url(:medium_0).to_s
     =link_to "edit '#{@recipe.name}'", edit_description_recipe_path(@recipe),
              remote:true, class: 'button expand', 'data-reveal-id'=>'dialog'
     =hidden_field_tag :recipe_id, @recipe.id
@@ -9,8 +26,10 @@
   .large-6.columns
     &nbsp;
 .row
-  .large-6.columns#steps
-    Drag the steps to reorder their sequence
-    =render partial:'cooking/steps/list'
-  .large-6.columns#ingredients
+  .large-6.columns
+    %label
+      Drag the steps to reorder their sequence
+    %ol.sortable_list#steps
+      =render partial:'cooking/steps/list'
+  .large-6.columns
     =render partial:'cooking/quantified_ingredients/list'
