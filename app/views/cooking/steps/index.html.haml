@@ -1,2 +1,22 @@
-#steps
+-content_for(:page_js) do
+  :javascript
+    $(function() {
+      $(".sortable_list").sortable({opacity: 0.6,
+                                    cursor: 'move',
+                                    update: function() {
+                                      var order = $(this).sortable("serialize") + 
+                                                  '&_method=PATCH';
+                                      var update_url = '#{update_sequences_recipe_steps_url(@recipe)}';
+                                      $.ajax({
+                                          type: "POST",
+                                          url: update_url,
+                                          data: order,
+                                          dataType: 'json'
+                                      });
+                                    }
+                                  });
+    });
+%label
+  Drag the steps to reorder their sequence
+%ol.sortable_list#steps
   =render partial:'cooking/steps/list'
