@@ -15,7 +15,13 @@
 //= require jquery.ui.sortable
 //= require jquery.remotipart
 // Note: Foundation 5 won't work with turbolinks
-//= require foundation
+//= require foundation/foundation
+//= require foundation/foundation.topbar
+//= require foundation/foundation.orbit
+//= require foundation/foundation.clearing
+//= require foundation/foundation.reveal
+//= require foundation/foundation.alert
+//= require foundation/foundation.dropdown
 //= require_tree .
 $(function() {
 	$(document).foundation();

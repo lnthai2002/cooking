@@ -1,5 +1,17 @@
 // import the CSS framework
-@import "foundation";
+@import "foundation/components/type";
+@import "foundation/components/buttons";
+@import "foundation/components/forms";
+@import "foundation/components/top-bar";
+@import "foundation/components/reveal";
+@import "foundation/components/panels";
+@import "foundation/components/alert-boxes";
+// set caption under image
+$orbit-caption-position: "under";
+@import "foundation/components/orbit";
+@import "foundation/components/clearing";
+@import "foundation/components/dropdown";
+
 
 .custom-reveal-class {
   @include reveal-bg();
