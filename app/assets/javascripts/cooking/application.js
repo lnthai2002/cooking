@@ -20,8 +20,18 @@
 $(function() {
 	$(document).foundation();
 
-	$(document).on('closed', '[data-reveal]', function () {
-	  $(this).html('');
+	$(document).on('closed', '[data-reveal]', function() {
+		$(this).html('');
+	});
+
+	$(document).on('click', '[data-open-clearing-target]', function(e) {
+		e.preventDefault();
+		$($(this).data('open-clearing-target')+' li img').eq($(this).data('thumb-index')).trigger('click');
+	});
+
+	$(document).on('click', '[data-swapin]', function(e) {
+		$($(e.currentTarget).data('swapout')).toggle();
+		$($(e.currentTarget).data('swapin')).toggle();
 	});
 
 	$(document).on('click', '.show_dialog', function(e) {
@@ -31,4 +41,4 @@ $(function() {
 	$('.js_pullable_title').click(function(e) {
 		$(e.currentTarget).nextAll('.js_pullable_div:first').slideToggle();
 	})
-}); 
+});

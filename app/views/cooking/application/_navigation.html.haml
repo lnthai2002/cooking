@@ -8,5 +8,4 @@
   %section.top-bar-section
     =render partial: 'actions'
     %ul.left
-      %li
-        %a{href: recipes_path} Recipes
+      %li= content_for?(:nav_title) ? yield(:nav_title) : link_to('Recipes', recipes_path)

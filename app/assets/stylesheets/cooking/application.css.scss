@@ -11,3 +11,22 @@
  *= require_self
  *= require_tree .
  */
+.recipe{
+  //padding: 5px;
+  //margin-left:auto;
+  //margin-right:auto;
+  //background-color:silver;
+  margin-bottom: 10px;
+  float:left;
+  //border: 2px solid grey;
+  .img{
+    margin: 0px;
+    padding: 0px;
+    spacing: 0px;
+  };
+  .txt{
+    margin: 0px;
+    padding: 5px;
+    background-color:sandybrown;
+  }
+}
