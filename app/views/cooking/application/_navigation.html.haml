@@ -1,11 +1,8 @@
 %nav.top-bar{'data-topbar' => ''}
   %ul.title-area
     %li.name
-      %h1
-        %a{href: 'http://darkportal.no-ip.info'} Cooking
+      %h1=content_for?(:nav_title) ? yield(:nav_title) : link_to('Recipes', recipes_path)
     %li.toggle-topbar.menu-icon
       %a{href: '#'} Menu
   %section.top-bar-section
     =render partial: 'actions'
-    %ul.left
-      %li= content_for?(:nav_title) ? yield(:nav_title) : link_to('Recipes', recipes_path)

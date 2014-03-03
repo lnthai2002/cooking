@@ -1,12 +1,12 @@
 -content_for(:nav_title) do
-  %a.button.active{href:'#','data-open-clearing-target'=>'#cover','data-thumb-index'=>'0'}
-    =@recipe.name
+  %a{href:'#','data-dropdown'=>'cover'}
+    =truncate(@recipe.name, length:15)
 
-%ul.clearing-thumbs.hide#cover{'data-clearing'=>true}
-  %li
-    %a{'href'=>asset_path(@recipe.image_url(:medium_2).to_s)}
-      =image_tag(@recipe.image_url(:medium_2).to_s,
-                 'data-caption'=>@recipe.description)
+#cover{class:'[tiny small medium large content] f-dropdown content', 'data-dropdown-content'=>true}
+  %h1=@recipe.name
+  %p=@recipe.description
+  =image_tag(@recipe.image_url(:medium_2).to_s)
+
 #steps
   .row
     .large-12.columns.text-center
@@ -14,11 +14,11 @@
   .row
     .large-12.columns.text-center
       %ul{'data-orbit'=>true,
-          'data-options'=>'pause_on_hover:true;slide_number:true;circular:false;variable_height:true'}
+          'data-options'=>'pause_on_hover:true;slide_number:false;circular:false;variable_height:true'}
         -@recipe.steps.each_with_index do |step, index|
           %li
             =image_tag(step.image_url(:medium_1).to_s)
-            .orbit-caption= step.description
+            .orbit-caption="#{step.sequence_number}. #{step.description}"
 #ingredients.hide
   .row
     .large-12.columns.text-center
