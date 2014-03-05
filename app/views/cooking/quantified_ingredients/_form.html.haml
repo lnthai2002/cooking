@@ -1,24 +1,21 @@
-= form_for [@recipe, @quantified_ingredient], :html=>{:multipart=>true, :remote=>true} do |q|
-  - if @quantified_ingredient.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@quantified_ingredient.errors.count, "error")
-        prohibited this ingredient from being saved:
-      %ul
-        - @quantified_ingredient.errors.full_messages.each do |msg|
-          %li= msg
-  = q.fields_for :ingredient do |i|
-    %table
-      %tr
-        %th Name
-        %td= i.text_field :name
-      %tr
-        %th Quantity
-        %td=q.text_field :quantity
-      %tr
-        %th Image
-        %td=i.file_field :image
-      %tr
-        %td &nbsp;
-      %tr
-        %td{:colspan=>2, :align=>"right"}= q.submit 'Add'
+=form_for [@recipe, @quantified_ingredient], html:{multipart:true, remote:true} do |q|
+  =q.fields_for :ingredient do |i|
+    .row
+      .large-12.columns
+        =q.error_messages
+    .row
+      .large-12.columns
+        =i.text_field :name, 'placeholder'=>'name'
+    .row
+      .large-12.columns
+        =q.text_field :quantity, 'placeholder'=>'quantity'
+    .row
+      .large-12.columns
+        %label
+          image
+          =i.file_field :image
+    .row
+      .large-6.columns
+        %a.close-button-class.close-reveal-modal Cancel
+      .large-6.columns
+        = q.submit 'Done', class:'button expand'

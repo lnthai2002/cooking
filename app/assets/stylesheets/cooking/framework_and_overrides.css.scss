@@ -1,0 +1,33 @@
+// import the CSS framework
+@import "foundation/components/type";
+@import "foundation/components/buttons";
+@import "foundation/components/forms";
+@import "foundation/components/offcanvas";
+@import "foundation/components/reveal";
+@import "foundation/components/panels";
+@import "foundation/components/alert-boxes";
+// set caption under image
+$orbit-caption-position: "under";
+@import "foundation/components/orbit";
+@import "foundation/components/clearing";
+@import "foundation/components/dropdown";
+
+
+.custom-reveal-class {
+  @include reveal-bg();
+  @include reveal-modal-base(
+    $base-style:true,
+    $width:$reveal-default-width
+  );
+  @include reveal-modal-style();
+  @include reveal-close();
+}
+
+.close-button-class {
+  $bg: lightgray;
+  @include button($button-med, $bg, 0, true, false, false);
+}
+
+.off-canvas-list li.active{
+  background-color: #007295;
+}

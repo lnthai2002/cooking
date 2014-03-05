@@ -1,0 +1,9 @@
+%nav.tab-bar
+  %section.left
+    %h1.title= content_for?(:nav_title) ? yield(:nav_title) : 'PAS'
+  %section.right-small
+    %a.right-off-canvas-toggle.menu-icon
+      %span
+
+%aside.right-off-canvas-menu
+  =render partial: 'actions'

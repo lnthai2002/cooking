@@ -1,0 +1,8 @@
+-@recipe.steps.each do |step|
+  -if step.sequence_number
+    %li.panel.callout.radius{id:"recordid_#{step.id}"}
+      =link_to 'Edit', edit_recipe_step_path(@recipe, step),
+               remote:true, class:'show_dialog'
+      =truncate(step.description, length:20)
+      =link_to 'Remove', [@recipe, step], data:{confirm:"Remove step #{step.sequence_number}?"},
+               method: :delete, remote:true, class:'right'

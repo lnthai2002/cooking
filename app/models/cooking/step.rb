@@ -5,6 +5,7 @@ module Cooking
     default_scope :order => 'sequence_number'
     before_create :set_sequence_number
     
+    validates :description, presence:true
     #use StepImageUploader to upload image and store url to image column
     mount_uploader :image, StepImageUploader
   

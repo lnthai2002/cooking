@@ -1,0 +1,9 @@
+-@recipe.quantified_ingredients.each do |qingredient|
+  %li.panel.radius
+    =link_to 'Edit', edit_recipe_quantified_ingredient_path(@recipe, qingredient),
+             {remote:true, class:'show_dialog'}
+    =qingredient.quantity
+    =qingredient.ingredient.name
+    =link_to 'Remove', recipe_quantified_ingredient_path(@recipe, qingredient),
+             {data:{confirm:"Remove #{qingredient.ingredient.name}?"},
+             method: :delete, remote:true, class:'right'}

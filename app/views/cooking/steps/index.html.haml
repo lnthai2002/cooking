@@ -16,23 +16,7 @@
                                     }
                                   });
     });
-.row
-  .large-12.columns.text-center
-    .center=image_tag @recipe.image_url(:medium_0).to_s
-    =link_to "edit '#{@recipe.name}'", edit_description_recipe_path(@recipe),
-             remote:true, class: 'button expand', 'data-reveal-id'=>'dialog'
-    =hidden_field_tag :recipe_id, @recipe.id
-.row
-  .large-6.columns
-    &nbsp;
-.row
-  .large-6.columns
-    %label
-      Drag the steps to reorder their sequence
-    %ol.sortable_list#steps
-      =render partial:'cooking/steps/list'
-  .large-6.columns
-    %label
-      Ingredient can not be reordered
-    %ul#ingredients
-      =render partial:'cooking/quantified_ingredients/list'
+%label
+  Drag the steps to reorder their sequence
+%ol.sortable_list#steps
+  =render partial:'cooking/steps/list'

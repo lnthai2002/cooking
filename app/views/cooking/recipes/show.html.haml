@@ -1,42 +1,33 @@
-:javascript
-  $(document).ready(function(){
-    var $container = $('#ingredients');
-    // initialize
-    $container.imagesLoaded( function() {
-      $container.masonry({
-        columnWidth: 200,
-        gutter: 20,
-        itemSelector: '.ingredient'
-      });
-    });
-  });
+-content_for(:nav_title) do
+  %a{href:'#','data-dropdown'=>'cover'}
+    =truncate(@recipe.name, length:15)
 
-%h2= @recipe.name
+#cover{class:'[tiny small medium large content] f-dropdown content', 'data-dropdown-content'=>true}
+  %h1=@recipe.name
+  %p=@recipe.description
+  =image_tag(@recipe.image_url(:medium_2).to_s)
 
-= image_tag @recipe.image_url(:medium_0).to_s
-%br
-= @recipe.description
-
-%fieldset
-  %legend.js_pullable_title Ingredient
-  .js_pullable_div
-    #ingredients
-      - @recipe.quantified_ingredients.each do |qingredient|
-        - if qingredient.ingredient
-          .ingredient
-            .txt
-              = qingredient.ingredient.name
-              X
-              = qingredient.quantity
-            .img
-              = image_tag(random_image_version(qingredient.ingredient, 'medium', 3))
-
-%fieldset
-  %legend.js_pullable_title Steps
-  .js_pullable_div
-    - @recipe.steps.each_with_index do |step, index|
-      - if step.sequence_number
-        .step
-          = index+1
-          = step.description
-          = image_tag step.image_url(:medium_0).to_s
+#steps
+  .row
+    .large-12.columns.text-center
+      %button.button{'data-swapout'=>'#steps', 'data-swapin'=>'#ingredients'} Ingredients
+  .row
+    .large-12.columns.text-center
+      %ul{'data-orbit'=>true,
+          'data-options'=>'pause_on_hover:true;slide_number:false;circular:false;variable_height:true'}
+        -@recipe.steps.each_with_index do |step, index|
+          %li
+            =image_tag(step.image_url(:medium_1).to_s)
+            .orbit-caption="#{step.sequence_number}. #{step.description}"
+#ingredients.hide
+  .row
+    .large-12.columns.text-center
+      %button.button{'data-swapin'=>'#steps', 'data-swapout'=>'#ingredients'} Steps
+  .row
+    .large-12.columns.text-center
+      %ul.clearing-thumbs{'data-clearing'=>true}
+        -@recipe.quantified_ingredients.each_with_index do |q, index|
+          %li
+            %a{'href'=>asset_path(q.ingredient.image_url(:medium_1).to_s)}
+              =image_tag(q.ingredient.image_url(:medium_1).to_s,
+                         'data-caption'=>"#{q.quantity} #{q.ingredient.name}")
