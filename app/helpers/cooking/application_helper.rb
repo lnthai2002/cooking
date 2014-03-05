@@ -30,7 +30,7 @@ module Cooking
     end
   end
 
-  class MenuBuilder < TabsOnRails::Tabs::Builder
+  class F5TopBarMenu < TabsOnRails::Tabs::Builder
     def add_raw(string)
       @tabs[:list] << string
     end
