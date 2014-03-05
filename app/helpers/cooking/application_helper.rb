@@ -1,4 +1,35 @@
 module Cooking
+  class F5OffCanvasMenu < TabsOnRails::Tabs::Builder
+    def add_raw(string)
+      @tabs[:list] << @context.content_tag('li') do
+        string
+      end
+    end
+
+    def tab_for(tab, name, options, item_options = {})
+      if current_tab?(tab)
+        @tabs[:list] << @context.content_tag('li', class: @options[:active][:class]) do
+          @context.link_to(name, '#')
+        end
+      else
+        @tabs[:list] << @context.content_tag('li') do
+          @context.link_to(name, options, item_options)
+        end
+      end
+    end
+
+    #How I want the list of tabs appear
+    def build_tabs(options)
+      output = ActiveSupport::SafeBuffer.new
+      @tabs[:list].each do |link|
+        output << link
+      end
+      return @context.content_tag('ul', options[:open_tabs]) do
+        output.to_s
+      end.to_s.html_safe
+    end
+  end
+
   class MenuBuilder < TabsOnRails::Tabs::Builder
     def add_raw(string)
       @tabs[:list] << string

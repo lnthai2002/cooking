@@ -2,7 +2,7 @@
 @import "foundation/components/type";
 @import "foundation/components/buttons";
 @import "foundation/components/forms";
-@import "foundation/components/top-bar";
+@import "foundation/components/offcanvas";
 @import "foundation/components/reveal";
 @import "foundation/components/panels";
 @import "foundation/components/alert-boxes";
@@ -26,4 +26,8 @@ $orbit-caption-position: "under";
 .close-button-class {
   $bg: lightgray;
   @include button($button-med, $bg, 0, true, false, false);
+}
+
+.off-canvas-list li.active{
+  background-color: #007295;
 }

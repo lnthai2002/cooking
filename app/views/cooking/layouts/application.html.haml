@@ -3,18 +3,24 @@
 %html
   %head
     %meta{name:'viewport', content:'width=device-width, initial-scale=1.0'}
-    %title= content_for?(:title) ? yield(:title) : 'Cooking'
-    %meta{name:'description', content:"#{content_for?(:description) ? yield(:description) : 'Cooking'}"}
+    %title Cooking
+    %meta{name:'description', content:'Cooking'}
     = stylesheet_link_tag 'cooking/application'
     -# Foundation 5 won't work with Rails Turbolinks
     -# Modernizr is required for Zurb Foundation
     = javascript_include_tag 'vendor/modernizr'
     = csrf_meta_tags
   %body
-    = render partial:'navigation'
-    = render 'messages'
-    #dialog.custom-reveal-class{'data-reveal'=>true}
-    = content_for?(:content) ? yield(:content) : yield
+    .off-canvas-wrap
+      .inner-wrap
+        = render partial: 'navigation'
+
+        %section.main-section
+          = render 'messages'
+          #dialog.custom-reveal-class{'data-reveal'=>true}
+          = content_for?(:content) ? yield(:content) : yield
+
+        %a.exit-off-canvas
     -# Foundation 5 won't work when application.js is included in HEAD
-    = javascript_include_tag 'cooking/application'
+    = javascript_include_tag "cooking/application"
     = content_for?(:page_js) ? yield(:page_js) : nil

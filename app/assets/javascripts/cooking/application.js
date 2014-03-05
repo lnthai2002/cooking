@@ -16,7 +16,7 @@
 //= require jquery.remotipart
 // Note: Foundation 5 won't work with turbolinks
 //= require foundation/foundation
-//= require foundation/foundation.topbar
+//= require foundation/foundation.offcanvas
 //= require foundation/foundation.orbit
 //= require foundation/foundation.clearing
 //= require foundation/foundation.reveal

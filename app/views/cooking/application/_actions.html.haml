@@ -1,5 +1,5 @@
-=tabs_tag(builder: Cooking::MenuBuilder, namespace: :recipe,
-          open_tabs:{class:'right'},
+=tabs_tag(builder: Cooking::F5OffCanvasMenu, namespace: :recipe,
+          open_tabs: {class:'off-canvas-list'},
           active: {class:'active'}) do |tab|
   -tab.list 'List', recipes_path
   -tab.raw link_to('Add', new_recipe_path,
