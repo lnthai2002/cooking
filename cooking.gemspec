@@ -16,11 +16,11 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency "rails", "~> 4.0.1"
-  s.add_dependency 'mysql2'
+  s.add_dependency 'mysql2', '~> 0.3.18'
   s.add_dependency 'mini_magick'
   s.add_dependency 'carrierwave'
   s.add_dependency 'tabs_on_rails'
-  s.add_dependency 'foundation-rails'     #foundation UI framework
+  s.add_dependency 'foundation-rails', '~>5.0'     #foundation UI framework
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'remotipart'
