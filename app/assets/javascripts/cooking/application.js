@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.sortable
+//= require jquery-ui/sortable
 //= require jquery.remotipart
 // Note: Foundation 5 won't work with turbolinks
 //= require foundation/foundation
